@@ -1,4 +1,3 @@
-// import ApolloClient from "apollo-boost";
 import { InMemoryCache } from "apollo-cache-inmemory";
 import { ApolloClient } from "apollo-client";
 import { ApolloLink } from "apollo-link";
@@ -25,11 +24,12 @@ const errorLink = onError(({ graphQLErrors, networkError, operation }) => {
 });
 
 const authLink = setContext((_, { headers }) => {
+  const myToken = sessionStorage.getItem("bumtoken") || "";
   const context = {
     headers: {
       ...headers,
-      // Authorization: `bearer ${sessionStorage.getItem("token")}`
-      authorization: `Bearer ${tempMeToken}`
+      authorization: `bearer ${myToken}`
+      // authorization: `Bearer ${tempMeToken}`
     }
   };
   return context;
