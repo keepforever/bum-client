@@ -9,6 +9,7 @@ export default  ( props ) => {
   console.log('data = ', data, '\n' )
 
   console.log('!!data = ', !!data, '\n' )
+  console.log('sessionStorage.getItem(\'bumtoken\') = ', sessionStorage.getItem('bumtoken'), '\n' )
 
   return (
     <h1>Hello TestHookQuery</h1>

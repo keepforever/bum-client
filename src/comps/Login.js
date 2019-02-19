@@ -5,9 +5,13 @@ import LOGIN_MUTATION from '../graphql/m/LOGIN_MUTATION';
 
 export default  ( props ) => {
 
+  const setToken = token => {
+    sessionStorage.setItem("bumtoken", token);
+  };
+
   const [values, setValues] = useState({
-    email: 'a',
-    password: 'a',
+    email: 'b',
+    password: 'b',
   })
 
   const { email, password } = values;
@@ -19,6 +23,14 @@ export default  ( props ) => {
       ...values,
     },
     update: (proxy, result) => {
+      const loginToken = result.data.login.payload.token;
+      if(loginToken) {
+        setToken(loginToken);
+      }
+
+      const testSet = sessionStorage.getItem("bumtoken");
+      console.log(' testSet = ',  testSet, '\n' )
+
       console.log('proxy = ', proxy, '\n' )
       console.log('result = ', result, '\n' )
     },
