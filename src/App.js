@@ -5,9 +5,19 @@ import apolloClient from "./apolloClient";
 import {BrowserRouter} from 'react-router-dom';
 
 import Routes from './config/Routes'
+import Layout from './comps/layout/Layout'
 // import Login from "./comps/Login";
 // import TestQuery from "./comps/TestQuery";
 // import TestHookQuery from "./comps/TestHookQuery";
+
+const MyLayout = () => {
+  return (
+    <Layout>
+      <Routes />
+    </Layout>
+  )
+}
+
 
 class App extends Component {
   render() {
@@ -15,7 +25,7 @@ class App extends Component {
       <ApolloProvider client={apolloClient}>
         <ApolloProviderHooks client={apolloClient}>
           <BrowserRouter>
-            <Routes />
+            <MyLayout />
           </BrowserRouter>
         </ApolloProviderHooks>
       </ApolloProvider>
