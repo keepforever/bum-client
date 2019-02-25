@@ -3,12 +3,13 @@ import { Switch, Route, Redirect } from 'react-router-dom';
 import Home from '../pages/Home';
 import About from '../pages/About';
 import Login from '../pages/Login';
+import Auth from '../pages/Auth';
 
 export default ( props ) => {
   return (
     <Switch>
       <Route path="/about" component={About} />
-      <Route path="/login" exact component={Login} />
+      <Route path="/login" exact component={Auth} />
       <Route path="/home" exact component={Home} />
       <Redirect to="/home" />
     </Switch>

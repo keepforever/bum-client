@@ -1,37 +1,35 @@
 import React, { useState } from "react";
 import { useMutation } from "react-apollo-hooks";
-import LOGIN_MUTATION from "../graphql/m/LOGIN_MUTATION";
+import REGISTER_MUTATION from "../graphql/m/REGISTER_MUTATION";
 import TextField from "@material-ui/core/TextField";
 import Button from '@material-ui/core/Button';
 
 
 export default props => {
   console.log("Login.js, props = ", props, "\n");
-
   const setToken = token => {
     sessionStorage.setItem("bumtoken", token);
   };
 
   const [values, setValues] = useState({
-    email: "b",
-    password: "b"
+    name: "",
+    email: "",
+    password: "",
+    isAdmin: false,
   });
 
-  const { email, password } = values;
+  const { name, email, password } = values;
 
   const handleChange = name => event => {
     setValues({ ...values, [name]: event.target.value });
   };
 
-  const loginMutation = useMutation(LOGIN_MUTATION, {
+  const loginMutation = useMutation(REGISTER_MUTATION, {
     variables: {
       ...values
     },
     update: async (proxy, result) => {
       console.log("result = ", result, "\n");
-
-      const isSuccess = !!result.data.login.payload;
-      console.log('isSuccess = ', isSuccess, '\n' )
 
       // const loginToken = await result.data.login.payload.token;
       // if (loginToken) {
@@ -49,6 +47,13 @@ export default props => {
 
   return (
     <div style={{ width: 500, display: "flex", flexDirection: "column" }}>
+      <TextField
+        label="Name"
+        value={name}
+        onChange={handleChange("name")}
+        margin="normal"
+        variant="filled"
+      />
       <TextField
         label="Email"
         value={email}
@@ -68,7 +73,7 @@ export default props => {
         color="primary"
         onClick={() => loginMutation()}
       >
-        LOGIN
+        CREATE ACCOUNT
       </Button>
     </div>
   );

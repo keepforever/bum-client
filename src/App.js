@@ -1,9 +1,9 @@
 import React, { Component, Suspense } from "react";
 import { ApolloProvider } from "react-apollo";
 import { ApolloProvider as ApolloProviderHooks } from "react-apollo-hooks";
-import apolloClient from "./apolloClient";
 import {BrowserRouter} from 'react-router-dom';
 
+import apolloClient from "./config/apolloClient";
 import Routes from './config/Routes'
 import Layout from './comps/layout/Layout'
 // import Login from "./comps/Login";
