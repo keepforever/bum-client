@@ -9,10 +9,6 @@ import Signup from '../comps/Signup';
 export default props => {
   // console.log("Auth.js, props = ", props, "\n");
 
-  const setToken = token => {
-    sessionStorage.setItem("bumtoken", token);
-  };
-
   const [values, setValues] = useState({
     isLogin: true,
   });

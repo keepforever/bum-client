@@ -11,6 +11,7 @@ class Home extends Component {
     console.log('loading = ', loading, '\n' )
 
     if(loading) return <h1>Loading...</h1>
+    console.log('this.props = ', this.props, '\n' )
     return (
       <div>
         <h1>

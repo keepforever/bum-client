@@ -1,12 +1,19 @@
 import React, { useState } from "react";
 import { useMutation } from "react-apollo-hooks";
+// redux
+import { bindActionCreators } from "redux";
+import { connect } from "react-redux";
+import {setAuthTrue} from '../store/actions/auth'
+// graphql
 import LOGIN_MUTATION from "../graphql/m/LOGIN_MUTATION";
+// material ui
 import TextField from "@material-ui/core/TextField";
 import Button from '@material-ui/core/Button';
 
 
-export default props => {
-  // console.log("Login.js, props = ", props, "\n");
+function Login(props) {
+  console.log("Login.js, props = ", props, "\n");
+  const { setAuthTrueAction } = props;
 
   const setToken = token => {
     sessionStorage.setItem("bumtoken", token);
@@ -36,6 +43,7 @@ export default props => {
 
       if(isSuccess) {
         setToken(result.data.login.payload.token);
+        setAuthTrueAction()
         props.history.push("/home");
       } else {
         setValues({
@@ -73,3 +81,14 @@ export default props => {
     </div>
   );
 };
+
+const mapDispatchToProps = dispatch => {
+  return bindActionCreators(
+    {
+      setAuthTrueAction: setAuthTrue,
+    },
+    dispatch
+  );
+};
+
+export default connect(null, mapDispatchToProps)(Login)
