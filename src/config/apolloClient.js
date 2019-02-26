@@ -7,7 +7,9 @@ import { onError } from "apollo-link-error";
 
 const cache = new InMemoryCache();
 
-const tempMeToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJjanM2bGlmNDgwMDA5MGE1OHI1eXZ6andrIiwiZXhwaXJlc0luIjoiN2QiLCJpYXQiOjE1NTAyNjk4ODZ9.ydtyT1hUdpKdiveq1bh3Ma2odJOgR7LB6cevp2fh4eI"
+// const tempMeToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJjanM2bGlmNDgwMDA5MGE1OHI1eXZ6andrIiwiZXhwaXJlc0luIjoiN2QiLCJpYXQiOjE1NTAyNjk4ODZ9.ydtyT1hUdpKdiveq1bh3Ma2odJOgR7LB6cevp2fh4eI"
+
+const tempMeToken = "nope"
 
 const errorLink = onError(({ graphQLErrors, networkError, operation }) => {
   if (graphQLErrors) {

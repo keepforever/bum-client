@@ -2,7 +2,6 @@ import React from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import Home from '../pages/Home';
 import About from '../pages/About';
-import Login from '../pages/Login';
 import Auth from '../pages/Auth';
 
 export default ( props ) => {

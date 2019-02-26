@@ -5,7 +5,7 @@ import ME_QUERY from '../graphql/q/ME_QUERY';
 class Home extends Component {
 
   render () {
-    console.log('this.props = ', this.props, '\n' )
+    // console.log('Home.js, this.props = ', this.props, '\n' )
     const { meQuery: { loading } } = this.props
 
     console.log('loading = ', loading, '\n' )

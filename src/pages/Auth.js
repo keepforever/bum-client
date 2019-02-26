@@ -1,13 +1,13 @@
-import React, { useState, Suspense } from "react";
+import React, { useState } from "react";
 // material-ui
 import Button from '@material-ui/core/Button';
 // views
-import Login from './Login';
-import Signup from './Signup';
+import Login from '../comps/Login';
+import Signup from '../comps/Signup';
 
 
 export default props => {
-  console.log("Auth.js, props = ", props, "\n");
+  // console.log("Auth.js, props = ", props, "\n");
 
   const setToken = token => {
     sessionStorage.setItem("bumtoken", token);

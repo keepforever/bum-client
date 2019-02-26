@@ -1,67 +1,75 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import { useMutation } from "react-apollo-hooks";
-import LOGIN_MUTATION from '../graphql/m/LOGIN_MUTATION';
+import LOGIN_MUTATION from "../graphql/m/LOGIN_MUTATION";
+import TextField from "@material-ui/core/TextField";
+import Button from '@material-ui/core/Button';
 
 
-export default  ( props ) => {
+export default props => {
+  // console.log("Login.js, props = ", props, "\n");
 
   const setToken = token => {
     sessionStorage.setItem("bumtoken", token);
   };
 
   const [values, setValues] = useState({
-    email: 'b',
-    password: 'b',
-  })
+    email: "b",
+    password: "b",
+    didLoginFail: false,
+  });
 
-  const { email, password } = values;
+  const { email, password, didLoginFail } = values;
 
-  console.log('values = ', values, '\n' )
+  const handleChange = name => event => {
+    setValues({ ...values, [name]: event.target.value });
+  };
 
   const loginMutation = useMutation(LOGIN_MUTATION, {
     variables: {
-      ...values,
+      ...values
     },
-    update: (proxy, result) => {
-      const loginToken = result.data.login.payload.token;
-      if(loginToken) {
-        setToken(loginToken);
+    update: async (proxy, result) => {
+      console.log("result = ", result, "\n");
+
+      const isSuccess = !!result.data.login.payload;
+      console.log('isSuccess = ', isSuccess, '\n' )
+
+      if(isSuccess) {
+        setToken(result.data.login.payload.token);
+        props.history.push("/home");
+      } else {
+        setValues({
+          ...values,
+          didLoginFail:true
+        })
       }
-
-      const testSet = sessionStorage.getItem("bumtoken");
-      console.log(' testSet = ',  testSet, '\n' )
-
-      console.log('proxy = ', proxy, '\n' )
-      console.log('result = ', result, '\n' )
-    },
-    suspend: true
+    }
   });
 
   return (
-    <div style={{ width: 500, display: 'flex', flexDirection: 'column'}}>
-    <input
-      onChange={e => {
-        const email = e.target.value;
-        setValues({
-          ...values,
-          email
-        });
-      }}
-      value={email}
-    />
-
-    <input
-      onChange={e => {
-        const password = e.target.value;
-        setValues({
-          ...values,
-          password
-        });
-      }}
-      value={password}
-    />
-    <button onClick={() => loginMutation()}> LOGIN </button>
+    <div style={{ width: 500, display: "flex", flexDirection: "column" }}>
+      <TextField
+        label="Email"
+        value={email}
+        onChange={handleChange("email")}
+        margin="normal"
+        variant="filled"
+      />
+      <TextField
+        label="Password"
+        value={password}
+        onChange={handleChange("password")}
+        margin="normal"
+        variant="filled"
+      />
+      <Button
+        variant="outlined"
+        color="primary"
+        onClick={() => loginMutation()}
+      >
+        LOGIN
+      </Button>
+      { didLoginFail && <h2>incorrect email or password</h2>}
     </div>
-
-  )
+  );
 };

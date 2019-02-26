@@ -4,9 +4,10 @@ import REGISTER_MUTATION from "../graphql/m/REGISTER_MUTATION";
 import TextField from "@material-ui/core/TextField";
 import Button from '@material-ui/core/Button';
 
-
 export default props => {
-  console.log("Login.js, props = ", props, "\n");
+
+  // console.log("Signup.js, props = ", props, "\n");
+
   const setToken = token => {
     sessionStorage.setItem("bumtoken", token);
   };
