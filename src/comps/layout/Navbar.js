@@ -10,8 +10,7 @@ import Button from "@material-ui/core/Button";
 import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/icons/Menu";
 // redux
-import { connect } from 'react-redux'
-
+import { connect } from "react-redux";
 
 const styles = {
   root: {
@@ -26,9 +25,21 @@ const styles = {
   }
 };
 
+const logInLink = (
+  <Button color="inherit" component={Link} to="/login">
+    Login
+  </Button>
+);
+
+const logOutLink = (
+  <Button color="inherit" component={Link} to="/logout">
+    Logout
+  </Button>
+);
+
 function ButtonAppBar(props) {
   const { classes, isLoggedIn } = props;
-  console.log('isLoggedIn = ', isLoggedIn, '\n' )
+  console.log("isLoggedIn = ", isLoggedIn, "\n");
 
   return (
     <div className={classes.root}>
@@ -42,16 +53,15 @@ function ButtonAppBar(props) {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" color="inherit" className={classes.grow}>
-            News
+            Bumcheeks
           </Typography>
-          {!isLoggedIn &&
-            <Button color="inherit" component={Link} to="/login">
-            Login
-            </Button>
-
-          }
-          <Button color="inherit" component={Link} to="/home">Home</Button>
-          <Button color="inherit" component={Link} to="/about">About</Button>
+          {isLoggedIn ? logOutLink : logInLink}
+          <Button color="inherit" component={Link} to="/home">
+            Home
+          </Button>
+          <Button color="inherit" component={Link} to="/about">
+            About
+          </Button>
         </Toolbar>
       </AppBar>
     </div>
@@ -64,7 +74,7 @@ ButtonAppBar.propTypes = {
 
 const mapStateToProps = state => {
   return {
-    isLoggedIn: state.auth.isAuth,
+    isLoggedIn: state.auth.isAuth
   };
 };
 

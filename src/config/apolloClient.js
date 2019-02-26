@@ -8,8 +8,9 @@ import { onError } from "apollo-link-error";
 const cache = new InMemoryCache();
 
 // const tempMeToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJjanM2bGlmNDgwMDA5MGE1OHI1eXZ6andrIiwiZXhwaXJlc0luIjoiN2QiLCJpYXQiOjE1NTAyNjk4ODZ9.ydtyT1hUdpKdiveq1bh3Ma2odJOgR7LB6cevp2fh4eI"
+const sessionToken = sessionStorage.getItem("bumtoken");
 
-if(sessionStorage.getItem("bumtoken").length > 10) {
+if(sessionToken && sessionStorage.getItem("bumtoken").length > 10) {
   sessionStorage.setItem("bumtoken", "if then nope")
 };
 const tempMeToken = "nope";
