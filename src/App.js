@@ -1,14 +1,12 @@
 import React, { Component, Suspense } from "react";
 import { ApolloProvider } from "react-apollo";
 import { ApolloProvider as ApolloProviderHooks } from "react-apollo-hooks";
-import {BrowserRouter} from 'react-router-dom';
-
+import { BrowserRouter } from 'react-router-dom';
+// locals
 import apolloClient from "./config/apolloClient";
 import Routes from './config/Routes'
 import Layout from './comps/layout/Layout'
-// import Login from "./comps/Login";
-// import TestQuery from "./comps/TestQuery";
-// import TestHookQuery from "./comps/TestHookQuery";
+
 
 const MyLayout = () => {
   return (
