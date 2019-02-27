@@ -1,94 +1,87 @@
 import React, { useState } from "react";
 import { useMutation } from "react-apollo-hooks";
 // redux
-import { bindActionCreators } from "redux";
-import { connect } from "react-redux";
-import {setAuthTrue} from '../store/actions/auth'
+// import { bindActionCreators } from "redux";
+// import { connect } from "react-redux";
 // graphql
-import LOGIN_MUTATION from "../graphql/m/LOGIN_MUTATION";
+import ADD_DECK_MUTATION from "../graphql/m/ADD_DECK_MUTATION";
 // material ui
 import TextField from "@material-ui/core/TextField";
-import Button from '@material-ui/core/Button';
-
+import Button from "@material-ui/core/Button";
 
 function Login(props) {
-  console.log("Login.js, props = ", props, "\n");
-  const { setAuthTrueAction } = props;
-
-  const setToken = token => {
-    sessionStorage.setItem("bumtoken", token);
-  };
+  // console.log("AddDeck.js, props = ", props, "\n");
 
   const [values, setValues] = useState({
-    email: "b",
-    password: "b",
-    didLoginFail: false,
+    deckName: "",
+    deckDetails: "",
+    deckList: "",
   });
-
-  const { email, password, didLoginFail } = values;
 
   const handleChange = name => event => {
     setValues({ ...values, [name]: event.target.value });
   };
 
-  const loginMutation = useMutation(LOGIN_MUTATION, {
+  const addDeckMutation = useMutation(ADD_DECK_MUTATION, {
     variables: {
       ...values
     },
     update: async (proxy, result) => {
       console.log("result = ", result, "\n");
-
-      const isSuccess = !!result.data.login.payload;
-      console.log('isSuccess = ', isSuccess, '\n' )
-
-      if(isSuccess) {
-        setToken(result.data.login.payload.token);
-        setAuthTrueAction()
-        props.history.push("/home");
-      } else {
-        setValues({
-          ...values,
-          didLoginFail:true
-        })
-      }
+      //
+      // const isSuccess = !!result.data.addDeck;
+      // console.log('isSuccess = ', isSuccess, '\n' )
+      //
+      // if(isSuccess) {
+      //   console.log('isSuccess = ', isSuccess, '\n' )
+      // } else {
+      //   setValues({
+      //     ...values,
+      //     didLoginFail:true
+      //   })
+      // }
     }
   });
+
+  const { deckList, deckDetails, deckName } = values;
+
+  console.log('values = ', values, '\n' )
 
   return (
     <div style={{ width: 500, display: "flex", flexDirection: "column" }}>
       <TextField
-        label="Email"
-        value={email}
-        onChange={handleChange("email")}
+        label="Deck Name"
+        value={deckName}
+        onChange={handleChange("deckName")}
         margin="normal"
         variant="filled"
       />
       <TextField
-        label="Password"
-        value={password}
-        onChange={handleChange("password")}
+        multiline
+        label="Deck Details"
+        value={deckDetails}
+        onChange={handleChange("deckDetails")}
+        margin="normal"
+        variant="filled"
+      />
+      <TextField
+        multiline
+        label="Deck List"
+        value={deckList}
+        onChange={handleChange("deckList")}
         margin="normal"
         variant="filled"
       />
       <Button
         variant="outlined"
         color="primary"
-        onClick={() => loginMutation()}
+        onClick={() => addDeckMutation()}
       >
-        LOGIN
+        AddDeck
       </Button>
-      { didLoginFail && <h2>incorrect email or password</h2>}
+      {/* didLoginFail && <h2>incorrect email or password</h2> */}
     </div>
   );
-};
+}
 
-const mapDispatchToProps = dispatch => {
-  return bindActionCreators(
-    {
-      setAuthTrueAction: setAuthTrue,
-    },
-    dispatch
-  );
-};
-
-export default connect(null, mapDispatchToProps)(Login)
+export default Login;
