@@ -1,9 +1,14 @@
 import React, { Component } from "react";
+// Apollo
 import { graphql, compose } from "react-apollo";
-import { connect } from "react-redux";
-import { setAuthFalse } from "../store/actions/auth";
-import { bindActionCreators } from "redux";
 import ME_QUERY from "../graphql/q/ME_QUERY";
+// Redux
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
+import { setAuthFalse } from "../store/actions/auth";
+// styled
+import { Container } from '../styled/home'
+
 
 class Home extends Component {
   render() {
@@ -18,7 +23,7 @@ class Home extends Component {
     if (loading) return <h1>Loading...</h1>;
     console.log("this.props = ", this.props, "\n");
     return (
-      <div>
+      <Container >
         <h1>Hello Home Page</h1>
         <button
           style={{ width: "300px", height: "65px", fontSize: "32px" }}
@@ -28,7 +33,7 @@ class Home extends Component {
         >
           Logout
         </button>
-      </div>
+      </Container>
     );
   }
 }
