@@ -26,7 +26,7 @@ const styles = {
 };
 
 const logInLink = (
-  <Button color="inherit" component={Link} to="/login">
+  <Button color="inherit" component={Link} to="/auth">
     Login
   </Button>
 );
@@ -36,6 +36,12 @@ const logOutLink = (
     Logout
   </Button>
 );
+
+const Add = (
+  <Button color="inherit" component={Link} to="/add">
+    Add
+  </Button>
+)
 
 function ButtonAppBar(props) {
   const { classes, isLoggedIn } = props;
@@ -62,6 +68,7 @@ function ButtonAppBar(props) {
           <Button color="inherit" component={Link} to="/about">
             About
           </Button>
+          {isLoggedIn && Add}
         </Toolbar>
       </AppBar>
     </div>

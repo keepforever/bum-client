@@ -9,7 +9,7 @@ import rootReducer from './store/reducers';
 // locals
 import apolloClient from "./config/apolloClient";
 import Routes from "./config/Routes";
-import Layout from "./comps/layout/Layout";
+import Layout from "./layout/Layout";
 
 
 const store = createStore(
