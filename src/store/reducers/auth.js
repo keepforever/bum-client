@@ -6,7 +6,7 @@ const initialState = {
 };
 
 const setAuthTrue = (state, action) => {
-  console.log('hello setAuthTRUE reducer = ', '\n' )
+  // console.log('hello setAuthTRUE reducer = ', '\n' )
   return {
     ...state,
     isAuth: true
@@ -14,7 +14,7 @@ const setAuthTrue = (state, action) => {
 }
 
 const setAuthFalse = (state, action) => {
-  console.log('hello setAuthFALSE reducer = ', '\n' )
+  // console.log('hello setAuthFALSE reducer = ', '\n' )
   return {
     ...state,
     isAuth: false

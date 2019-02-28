@@ -45,7 +45,7 @@ const Add = (
 
 function ButtonAppBar(props) {
   const { classes, isLoggedIn } = props;
-  console.log("isLoggedIn = ", isLoggedIn, "\n");
+  // console.log("Navbar.js, isLoggedIn = ", isLoggedIn, "\n");
 
   return (
     <div className={classes.root}>

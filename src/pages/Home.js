@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Redirect } from 'react-router-dom';
+import { Redirect } from "react-router-dom";
 // Apollo
 import { graphql, compose } from "react-apollo";
 import ME_QUERY from "../graphql/q/ME_QUERY";
@@ -8,10 +8,10 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { setAuthFalse } from "../store/actions/auth";
 // styled
-import { Container, RowContainer } from '../styled/home'
+import { Container, RowContainer, Button } from "../styled/home";
 // comps
-import DeckList from '../comps/DeckList';
-import CommunityDecks from '../comps/CommunityDecks';
+import MeDeckList from "../comps/MeDeckList";
+import CommunityDecks from "../comps/CommunityDecks";
 
 class Home extends Component {
   render() {
@@ -27,32 +27,35 @@ class Home extends Component {
 
     // console.log('this.props.meQuery.me = ', this.props.meQuery.me, '\n' )
 
-    if(!this.props.meQuery.me){
-      return <Redirect to="/auth" />
+    if (!this.props.meQuery.me) {
+      return <Redirect to="/auth" />;
     }
 
-    const { meQuery: { me: { name, email, decks }} } = this.props
+    const {
+      meQuery: {
+        me: { name, email, decks }
+      }
+    } = this.props;
 
     console.log("this.props = ", this.props, "\n");
     return (
-      <Container >
-        <div style={{marginLeft: '50px'}}>
-        <RowContainer>
-          <h1 >Hello Home Page</h1>
-          <h3>name: {name}</h3>
-          <h3>email: {email}</h3>
-          <h3>number of decks: {decks.length}</h3>
-        </RowContainer>
-        <button
-          style={{ width: "300px", height: "65px", fontSize: "32px" }}
-          onClick={() => {
-            setAuthFalseAction();
-          }}
-        >
-          Logout
-        </button>
-        <CommunityDecks />
-        { /*<DeckList decks={decks}/> */}
+      <Container>
+        <div style={{ marginLeft: "50px" }}>
+          <RowContainer>
+            <h3>name: {name}</h3>
+            <h3>email: {email}</h3>
+            <h3>number of decks: {decks.length}</h3>
+          </RowContainer>
+          <Button
+            color="black"
+            onClick={() => {
+              setAuthFalseAction();
+            }}
+          >
+            Log out
+          </Button>
+          <CommunityDecks />
+          {/*<MeDeckList decks={decks}/> */}
         </div>
       </Container>
     );

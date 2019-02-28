@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import { graphql, compose } from "react-apollo";
 import ALL_DECKS_QUERY from "../graphql/q/ALL_DECKS_QUERY";
 // material-ui
