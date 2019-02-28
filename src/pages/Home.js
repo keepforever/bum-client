@@ -9,7 +9,6 @@ import { setAuthFalse } from "../store/actions/auth";
 // styled
 import { Container } from '../styled/home'
 // comps
-import AddDeck from '../comps/AddDeck';
 import DeckList from '../comps/DeckList';
 
 
