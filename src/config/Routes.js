@@ -7,7 +7,7 @@ import Logout from "../pages/Logout";
 import Add from "../pages/Add";
 
 export default props => {
-  console.log("routesProps = ", props, "\n");
+  // console.log("routesProps = ", props, "\n");
   return (
     <Switch>
       <Route path="/about" component={About} />
@@ -19,6 +19,7 @@ export default props => {
     </Switch>
   );
 };
+
 //
 // <Route
 //   path="/home"

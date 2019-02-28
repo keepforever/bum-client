@@ -31,7 +31,7 @@ const errorLink = onError(({ graphQLErrors, networkError, operation }) => {
 
 const authLink = setContext((_, { headers }) => {
   const myToken = sessionStorage.getItem("bumtoken") || tempMeToken;
-  console.log('myToken = ', myToken, '\n' )
+  // console.log('myToken = ', myToken, '\n' )
   const context = {
     headers: {
       ...headers,

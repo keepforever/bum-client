@@ -15,8 +15,8 @@ function Login(props) {
 
   setTimeout(() => {
     loginMutation()
-  }, 2500)
-  console.log("Login.js, props = ", props, "\n");
+  }, 1500)
+  // console.log("Login.js, props = ", props, "\n");
   const { setAuthTrueAction } = props;
 
   const setToken = token => {
@@ -40,10 +40,10 @@ function Login(props) {
       ...values
     },
     update: async (proxy, result) => {
-      console.log("result = ", result, "\n");
+      // console.log("result = ", result, "\n");
 
       const isSuccess = !!result.data.login.payload;
-      console.log('isSuccess = ', isSuccess, '\n' )
+      // console.log('isSuccess = ', isSuccess, '\n' )
 
       if(isSuccess) {
         setToken(result.data.login.payload.token);

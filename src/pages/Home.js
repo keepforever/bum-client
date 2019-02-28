@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Redirect } from 'react-router-dom';
 // Apollo
 import { graphql, compose } from "react-apollo";
 import ME_QUERY from "../graphql/q/ME_QUERY";
@@ -7,10 +8,10 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { setAuthFalse } from "../store/actions/auth";
 // styled
-import { Container } from '../styled/home'
+import { Container, RowContainer } from '../styled/home'
 // comps
 import DeckList from '../comps/DeckList';
-
+import CommunityDecks from '../comps/CommunityDecks';
 
 class Home extends Component {
   render() {
@@ -20,13 +21,14 @@ class Home extends Component {
       setAuthFalseAction
     } = this.props;
 
-    console.log("loading = ", loading, "\n");
+    // console.log("Home.js, loading = ", loading, "\n");
 
     if (loading) return <h1>Loading...</h1>;
 
-    console.log('this.props.meQuery.me = ', this.props.meQuery.me, '\n' )
+    // console.log('this.props.meQuery.me = ', this.props.meQuery.me, '\n' )
+
     if(!this.props.meQuery.me){
-      return <h1>Please Login</h1>
+      return <Redirect to="/auth" />
     }
 
     const { meQuery: { me: { name, email, decks }} } = this.props
@@ -35,10 +37,12 @@ class Home extends Component {
     return (
       <Container >
         <div style={{marginLeft: '50px'}}>
-        <h1 >Hello Home Page</h1>
-        <h3>name: {name}</h3>
-        <h3>email: {email}</h3>
-        <h3>decks: {decks.length}</h3>
+        <RowContainer>
+          <h1 >Hello Home Page</h1>
+          <h3>name: {name}</h3>
+          <h3>email: {email}</h3>
+          <h3>number of decks: {decks.length}</h3>
+        </RowContainer>
         <button
           style={{ width: "300px", height: "65px", fontSize: "32px" }}
           onClick={() => {
@@ -47,7 +51,8 @@ class Home extends Component {
         >
           Logout
         </button>
-        <DeckList decks={decks}/>
+        <CommunityDecks />
+        { /*<DeckList decks={decks}/> */}
         </div>
       </Container>
     );

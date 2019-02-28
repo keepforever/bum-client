@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { graphql, compose } from 'react-apollo';
-import ME_QUERY from '../graphql/q/ME_QUERY';
+import ME_QUERY from '../../graphql/q/ME_QUERY';
 
 
 class TestQuery extends Component {
@@ -12,8 +12,6 @@ class TestQuery extends Component {
     );
   }
 }
-
-
 
 export default compose(
   graphql(ME_QUERY, {
