@@ -32,12 +32,14 @@ function CommunityDecks(props) {
       <h1>Hello CommunityDecks</h1>
       <List dense={false}>
         {allDecks.map(d => {
+          const { deckName, deckDetails, score, id } = d;
           return (
-            <ListItem key={d.id}>
+            <ListItem key={id}>
               <ListItemIcon>
                 <FolderIcon />
               </ListItemIcon>
-              <ListItemText primary={d.deckName} secondary={d.deckDetails} />
+              <ListItemText primary={deckName} secondary={deckDetails} />
+              <ListItemText primary="Score" secondary={score} />
             </ListItem>
           );
         })}

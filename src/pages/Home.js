@@ -37,7 +37,7 @@ class Home extends Component {
       }
     } = this.props;
 
-    console.log("this.props = ", this.props, "\n");
+    console.log("Home.js, \n this.props = ", this.props, "\n");
     return (
       <Container>
         <div style={{ marginLeft: "50px" }}>
