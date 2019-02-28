@@ -48,7 +48,6 @@ class Home extends Component {
         >
           Logout
         </button>
-        <AddDeck />
         <DeckList decks={decks}/>
         </div>
       </Container>
