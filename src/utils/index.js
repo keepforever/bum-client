@@ -16,8 +16,16 @@ function clearLog(text, item) {
   `)
 }
 
+const truncate = (string) => {
+   if (string.length > 12)
+      return string.substring(0, 12)+'...';
+   else
+      return string;
+};
+
 const utils = {
-  clearLog
+  clearLog,
+  truncate
 }
 
 export default utils

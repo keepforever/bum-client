@@ -1,15 +1,19 @@
 import React from "react";
 // redux
-// redux
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import { setAuthFalse } from "../store/actions/auth";
+// apollo
+import { useApolloClient } from 'react-apollo-hooks';
 
 function Logout(props) {
+  const client = useApolloClient();
+
   console.log("Logout props = ", props, "\n");
   sessionStorage.setItem("bumtoken", "youAreLoggedOutNow")
   props.setAuthFalseAction();
-  props.history.push("/auth");
+  client.clearStore();
+  props.history.push("/add");
 
   return <h1>Logging Out</h1>;
 }

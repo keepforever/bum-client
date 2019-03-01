@@ -8,6 +8,8 @@ import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 // import Typography from '@material-ui/core/Typography';
 import FolderIcon from "@material-ui/icons/Folder";
+// utils
+import utils from '../utils'
 
 function CommunityDecks(props) {
   console.log("CommunityDecks, props = ", props, "\n");
@@ -27,6 +29,7 @@ function CommunityDecks(props) {
   } = props;
 
   console.log("allDecks = ", allDecks, "\n");
+  const { truncate } = utils;
   return (
     <>
       <h1>Hello CommunityDecks</h1>
@@ -38,7 +41,7 @@ function CommunityDecks(props) {
               <ListItemIcon>
                 <FolderIcon />
               </ListItemIcon>
-              <ListItemText primary={deckName} secondary={deckDetails} />
+              <ListItemText primary={deckName} secondary={truncate(deckDetails)} />
               <ListItemText primary="Score" secondary={score} />
             </ListItem>
           );
