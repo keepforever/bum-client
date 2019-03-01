@@ -4,12 +4,12 @@ import { Container } from '../styled/add'
 // local
 import AddDeck from '../comps/AddDeck';
 // apollo
-import { useApolloClient } from 'react-apollo-hooks';
+// import { useApolloClient } from 'react-apollo-hooks';
 
 
 export default  ( props ) => {
-  const client = useApolloClient()
-  console.log('client = ', client, '\n' )
+  // const client = useApolloClient()
+  // console.log('client = ', client, '\n' )
   return (
     <Container>
       <AddDeck />

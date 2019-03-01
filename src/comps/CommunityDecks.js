@@ -9,22 +9,19 @@ import ListItemText from "@material-ui/core/ListItemText";
 // import Typography from '@material-ui/core/Typography';
 import FolderIcon from "@material-ui/icons/Folder";
 // utils
-import utils from '../utils'
+import utils from "../utils";
 // router
 import { withRouter } from "react-router";
-
 
 function CommunityDecks(props) {
   console.log("CommunityDecks, props = ", props, "\n");
 
   const viewDeck = (id, deck) => {
     props.history.push(`/view-deck/${id}`, {
-      deck: {
-        ...deck,
-        deckList: JSON.parse(deck.deckList)
-      }
+      ...deck,
+      deckList: JSON.parse(deck.deckList)
     });
-  }
+  };
 
   const {
     allDecksQuery: { loading }
@@ -40,7 +37,7 @@ function CommunityDecks(props) {
     allDecksQuery: { allDecks }
   } = props;
 
-  console.log("allDecks = ", allDecks, "\n");
+  // console.log("allDecks = ", allDecks, "\n");
   const { truncate } = utils;
 
   return (
@@ -50,13 +47,19 @@ function CommunityDecks(props) {
         {allDecks.map(d => {
           const { deckName, deckDetails, score, id } = d;
           return (
-            <ListItem key={id} onClick={() => {
-              viewDeck(id, d)
-            }}>
+            <ListItem
+              key={id}
+              onClick={() => {
+                viewDeck(id, d);
+              }}
+            >
               <ListItemIcon>
                 <FolderIcon />
               </ListItemIcon>
-              <ListItemText primary={deckName} secondary={truncate(deckDetails)} />
+              <ListItemText
+                primary={deckName}
+                secondary={truncate(deckDetails)}
+              />
               <ListItemText primary="Score" secondary={score} />
             </ListItem>
           );
