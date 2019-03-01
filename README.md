@@ -1,3 +1,26 @@
+# MAGIC-ARENA-DECKLISTS
+
+### This is the client application to a 'portfolio-project' I'm working on.
+
+### When complete, this application will allow a user to:
+ - login,
+ - view/copy/vote other users decks
+ - add their own deck list
+
+
+## The Stack  
+  - Node
+  - Express
+  - React,
+  - Prisma
+
+## 3rd Party Lib Reference
+ - react-lazyload-fadin:
+  - docs: https://github.com/Swizec/react-lazyload-fadein
+
+
+
+# EVERYTHING BELOW THIS LINE IS THE BOILER README
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts

@@ -8584,6 +8584,20 @@ react-is@^16.8.2:
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.8.3.tgz#4ad8b029c2a718fc0cfc746c8d4e1b7221e5387d"
   integrity sha512-Y4rC1ZJmsxxkkPuMLwvKvlL1Zfpbcu+Bf4ZigkHup3v9EfdYhAlWAaVyA19olXq2o2mGn0w+dFKvk3pVVlYcIA==
 
+react-lazyload-fadein@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/react-lazyload-fadein/-/react-lazyload-fadein-1.1.0.tgz#f1a46f989d00cab2a9593cdbb083f2927c03621f"
+  integrity sha512-aO5DVE2W21CjKsX+E0J4gFst1LYizndknHhJBdkFx9NK/LPLQkQ4e3ypnsThuFA1QuTeuiXLSueXkotFnDG9KA==
+  dependencies:
+    prop-types "^15.6.0"
+    react-lazyload "^2.3.0"
+    react-transition-group "^2.2.1"
+
+react-lazyload@^2.3.0:
+  version "2.5.0"
+  resolved "https://registry.yarnpkg.com/react-lazyload/-/react-lazyload-2.5.0.tgz#7ed20bf0408dc684c10e808060e51d904cc0ab8d"
+  integrity sha512-RkEwpJDqEUVkXodxBXAI/UDyGYUBTZCU9kdG0Lwmg8BIv8zDvP+exFwUzc7wP4HX6n33CCsz+cjG2FpwdRoxpw==
+
 react-lifecycles-compat@^3.0.2, react-lifecycles-compat@^3.0.4:
   version "3.0.4"
   resolved "https://registry.yarnpkg.com/react-lifecycles-compat/-/react-lifecycles-compat-3.0.4.tgz#4f1a273afdfc8f3488a8c516bfda78f872352362"

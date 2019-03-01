@@ -1,8 +1,8 @@
 import React from "react";
-
+import FadeIn from "react-lazyload-fadein";
 
 export default props => {
-  console.log('ViewDeck.js, props` = ', props, '\n' )
+  console.log("ViewDeck.js, props` = ", props, "\n");
 
   const {
     deckName,
@@ -12,26 +12,50 @@ export default props => {
     author: { name }
   } = props.location.state;
 
-  const cardNames = Object.keys(deckList)
+  const cardNames = Object.keys(deckList);
 
-  console.log('cardNames = ', cardNames, '\n' )
+  console.log("cardNames = ", cardNames, "\n");
 
   return (
-    <div>
-      <h1>Hello {deckName}</h1>
+    <div style={{
+      width: '95vw'
+    }}>
+      <h1>Deck Name: {deckName}</h1>
       <h2>author: {name}</h2>
+      <hr />
+      <div style={{border: '2px solid black', padding: 15}}>
+        <h3>About: </h3>
+        <p>{deckDetails}</p>
+      </div>
       <h3>
         deckName: {deckName}, score: {score}
       </h3>
       {cardNames.map(c => {
-        return <p key={deckList[c].name}>
-          {deckList[c].name}: x {deckList[c].quantity}
-        </p>
-
+        return (
+          <div key={deckList[c].name}>
+            <p>
+              {deckList[c].name}: x {deckList[c].quantity}
+            </p>
+            <FadeIn height={600}>
+              {onload => (
+                <img
+                  alt="nope"
+                  src={
+                    deckList[c].imageUrl
+                      ? deckList[c].imageUrl
+                      : "https://picsum.photos/200/300/?random"
+                  }
+                  onLoad={onload}
+                  style={{
+                    height: 352,
+                    width: 252,
+                  }}
+                />
+              )}
+            </FadeIn>
+          </div>
+        );
       })}
-      <br/>
-      <hr/>
-      <p>{deckDetails}</p>
     </div>
   );
 };
