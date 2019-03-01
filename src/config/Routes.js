@@ -5,6 +5,7 @@ import About from "../pages/About";
 import Auth from "../pages/Auth";
 import Logout from "../pages/Logout";
 import Add from "../pages/Add";
+import ViewDeck from "../pages/ViewDeck"
 
 export default props => {
   // console.log("routesProps = ", props, "\n");
@@ -15,6 +16,7 @@ export default props => {
       <Route path="/home" exact component={Home} />
       <Route path="/logout" exact component={Logout} />
       <Route path="/add" exact component={Add} />
+      <Route path="/view-deck/:id" exact component={ViewDeck} />
       <Redirect to="/auth" />
     </Switch>
   );

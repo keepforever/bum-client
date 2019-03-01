@@ -10,9 +10,21 @@ import ListItemText from "@material-ui/core/ListItemText";
 import FolderIcon from "@material-ui/icons/Folder";
 // utils
 import utils from '../utils'
+// router
+import { withRouter } from "react-router";
+
 
 function CommunityDecks(props) {
   console.log("CommunityDecks, props = ", props, "\n");
+
+  const viewDeck = (id, deck) => {
+    props.history.push(`/view-deck/${id}`, {
+      deck: {
+        ...deck,
+        deckList: JSON.parse(deck.deckList)
+      }
+    });
+  }
 
   const {
     allDecksQuery: { loading }
@@ -30,6 +42,7 @@ function CommunityDecks(props) {
 
   console.log("allDecks = ", allDecks, "\n");
   const { truncate } = utils;
+
   return (
     <>
       <h1>Hello CommunityDecks</h1>
@@ -37,7 +50,9 @@ function CommunityDecks(props) {
         {allDecks.map(d => {
           const { deckName, deckDetails, score, id } = d;
           return (
-            <ListItem key={id}>
+            <ListItem key={id} onClick={() => {
+              viewDeck(id, d)
+            }}>
               <ListItemIcon>
                 <FolderIcon />
               </ListItemIcon>
@@ -52,6 +67,7 @@ function CommunityDecks(props) {
 }
 
 export default compose(
+  withRouter,
   graphql(ALL_DECKS_QUERY, {
     name: "allDecksQuery"
   })
