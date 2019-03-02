@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-  background: lightyellow;
+  /* background: lightyellow; */
   width: 100%;
 `;
 

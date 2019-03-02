@@ -10,6 +10,8 @@ import rootReducer from './store/reducers';
 import apolloClient from "./config/apolloClient";
 import Routes from "./config/Routes";
 import Layout from "./layout/Layout";
+// material ui theme
+import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles";
 
 
 const store = createStore(
@@ -17,11 +19,22 @@ const store = createStore(
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 )
 
+const theme = createMuiTheme({
+  palette: {
+    type: 'dark',
+    // primary: deepOrange,
+    // secondary: lightBlue,
+    // error: amber,
+  },
+});
+
 const MyLayout = () => {
   return (
+    <MuiThemeProvider theme={theme}>
     <Layout>
       <Routes />
     </Layout>
+    </MuiThemeProvider>
   );
 };
 

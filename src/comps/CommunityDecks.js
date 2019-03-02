@@ -6,6 +6,7 @@ import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
+import Typography from '@material-ui/core/Typography';
 // import Typography from '@material-ui/core/Typography';
 import FolderIcon from "@material-ui/icons/Folder";
 // utils
@@ -41,8 +42,10 @@ function CommunityDecks(props) {
   const { truncate } = utils;
 
   return (
-    <>
-      <h1>Hello CommunityDecks</h1>
+    <div style={{border: "1px solid red"}}>
+    <Typography variant="h5" component="h3">
+      Community Decks
+    </Typography>
       <List dense={false}>
         {allDecks.map(d => {
           const { deckName, deckDetails, score, id } = d;
@@ -65,7 +68,7 @@ function CommunityDecks(props) {
           );
         })}
       </List>
-    </>
+    </div>
   );
 }
 

@@ -12,6 +12,7 @@ import { Container, RowContainer, Button, CommunityDecksContainer } from "../sty
 // comps
 import MeDeckList from "../comps/MeDeckList";
 import CommunityDecks from "../comps/CommunityDecks";
+import Placard from "../comps/Placard"
 
 class Home extends Component {
   render() {
@@ -33,7 +34,7 @@ class Home extends Component {
 
     const {
       meQuery: {
-        me: { name, email, decks }
+        me
       }
     } = this.props;
 
@@ -42,23 +43,25 @@ class Home extends Component {
       <Container>
         <div style={{ marginLeft: "50px" }}>
           <RowContainer>
-            <h3>name: {name}</h3>
+            <Placard {...me}/>
+            {/* <h3>name: {name}</h3>
             <h3>email: {email}</h3>
-            <h3>number of decks: {decks.length}</h3>
+            <h3>number of decks: {decks.length}</h3> */}
           </RowContainer>
-          <Button
-            color="black"
-            onClick={() => {
-              setAuthFalseAction();
-            }}
-          >
-            Log out
-          </Button>
+
           <CommunityDecksContainer>
             <CommunityDecks />
           </CommunityDecksContainer>
           {/*<MeDeckList decks={decks}/> */}
         </div>
+        <Button
+          color="black"
+          onClick={() => {
+            setAuthFalseAction();
+          }}
+        >
+          Log out
+        </Button>
       </Container>
     );
   }

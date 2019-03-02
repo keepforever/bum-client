@@ -7,6 +7,7 @@ class About extends Component {
       <div>
         <h1>
           Hello About Page
+          <a href={"/cat pictures"}>search</a>
         </h1>
       </div>
 

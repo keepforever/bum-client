@@ -11,7 +11,7 @@ export default props => {
   // console.log('client = ', client, '\n' )
   return (
     <Container>
-      <h1>Add a Deck!</h1>
+      <h1 style={{color: 'lightgray'}}>Add a Deck!</h1>
       <AddDeck />
     </Container>
   );

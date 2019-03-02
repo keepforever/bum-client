@@ -3,19 +3,20 @@ import { useMutation } from "react-apollo-hooks";
 // redux
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
-import {setAuthTrue} from '../store/actions/auth'
+import { setAuthTrue } from "../store/actions/auth";
 // graphql
 import LOGIN_MUTATION from "../graphql/m/LOGIN_MUTATION";
 // material ui
 import TextField from "@material-ui/core/TextField";
-import Button from '@material-ui/core/Button';
-
+import Button from "@material-ui/core/Button";
 
 function Login(props) {
 
-  // setTimeout(() => {
-  //   loginMutation()
-  // }, 1500)
+  setTimeout(() => {
+    console.log('auto Login = ', '\n' )
+    loginMutation();
+  }, 1000);
+
   // console.log("Login.js, props = ", props, "\n");
   const { setAuthTrueAction } = props;
 
@@ -26,7 +27,7 @@ function Login(props) {
   const [values, setValues] = useState({
     email: "b",
     password: "b",
-    didLoginFail: false,
+    didLoginFail: false
   });
 
   const { email, password, didLoginFail } = values;
@@ -45,15 +46,15 @@ function Login(props) {
       const isSuccess = !!result.data.login.payload;
       // console.log('isSuccess = ', isSuccess, '\n' )
 
-      if(isSuccess) {
+      if (isSuccess) {
         setToken(result.data.login.payload.token);
-        setAuthTrueAction()
+        setAuthTrueAction();
         props.history.push("/home");
       } else {
         setValues({
           ...values,
-          didLoginFail:true
-        })
+          didLoginFail: true
+        });
       }
     }
   });
@@ -81,18 +82,21 @@ function Login(props) {
       >
         LOGIN
       </Button>
-      { didLoginFail && <h2>incorrect email or password</h2>}
+      {didLoginFail && <h2>incorrect email or password</h2>}
     </div>
   );
-};
+}
 
 const mapDispatchToProps = dispatch => {
   return bindActionCreators(
     {
-      setAuthTrueAction: setAuthTrue,
+      setAuthTrueAction: setAuthTrue
     },
     dispatch
   );
 };
 
-export default connect(null, mapDispatchToProps)(Login)
+export default connect(
+  null,
+  mapDispatchToProps
+)(Login);
