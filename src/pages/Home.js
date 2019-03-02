@@ -8,7 +8,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { setAuthFalse } from "../store/actions/auth";
 // styled
-import { Container, RowContainer, Button } from "../styled/home";
+import { Container, RowContainer, Button, CommunityDecksContainer } from "../styled/home";
 // comps
 import MeDeckList from "../comps/MeDeckList";
 import CommunityDecks from "../comps/CommunityDecks";
@@ -54,7 +54,9 @@ class Home extends Component {
           >
             Log out
           </Button>
-          <CommunityDecks />
+          <CommunityDecksContainer>
+            <CommunityDecks />
+          </CommunityDecksContainer>
           {/*<MeDeckList decks={decks}/> */}
         </div>
       </Container>
@@ -77,7 +79,10 @@ export default connect(
 )(
   compose(
     graphql(ME_QUERY, {
-      name: "meQuery"
+      name: "meQuery",
+      // options: {
+      //   pollInterval: "5000"
+      // }
     })
   )(Home)
 );

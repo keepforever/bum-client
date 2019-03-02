@@ -34,3 +34,7 @@ export const Button = styled.div`
     border-color: red;
   }
 `;
+
+export const CommunityDecksContainer = styled.div`
+  width: 500px;
+`;

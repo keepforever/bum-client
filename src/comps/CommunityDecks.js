@@ -72,6 +72,9 @@ function CommunityDecks(props) {
 export default compose(
   withRouter,
   graphql(ALL_DECKS_QUERY, {
-    name: "allDecksQuery"
+    name: "allDecksQuery",
+    options: {
+      pollInterval: 5000
+    }
   })
 )(CommunityDecks);

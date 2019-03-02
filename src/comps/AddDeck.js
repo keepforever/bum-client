@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { useMutation } from "react-apollo-hooks";
 // redux
 // import { bindActionCreators } from "redux";
 // import { connect } from "react-redux";
@@ -8,14 +7,25 @@ import ADD_DECK_MUTATION from "../graphql/m/ADD_DECK_MUTATION";
 // material ui
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
+// apollo
+import { useMutation, useApolloClient } from "react-apollo-hooks";
+// spinner
+import { PacmanLoader } from "react-spinners";
+import { SpinnerContainer } from "../styled/add";
 
+const defaultState = {
+  deckName: "",
+  deckDetails: "",
+  deckList: "",
+  errorAdd: false,
+  successAdd: false,
+  isSubmitting: false
+};
 function Login(props) {
   // console.log("AddDeck.js, props = ", props, "\n");
 
   const [values, setValues] = useState({
-    deckName: "",
-    deckDetails: "",
-    deckList: "",
+    ...defaultState
   });
 
   const handleChange = name => event => {
@@ -26,25 +36,48 @@ function Login(props) {
     variables: {
       ...values
     },
+    updateQueries: ["allDecks"],
     update: async (proxy, result) => {
       console.log("result = ", result, "\n");
-      //
-      // const isSuccess = !!result.data.addDeck;
-      // console.log('isSuccess = ', isSuccess, '\n' )
-      //
-      // if(isSuccess) {
-      //   console.log('isSuccess = ', isSuccess, '\n' )
-      // } else {
-      //   setValues({
-      //     ...values,
-      //     didLoginFail:true
-      //   })
-      // }
+
+      const {
+        data: { addDeck }
+      } = result;
+
+      if (addDeck === "error fatal") {
+        setValues({ ...defaultState, errorAdd: true });
+      } else {
+        setValues({ ...defaultState, successAdd: true });
+
+      }
     }
   });
 
   const { deckList, deckDetails, deckName } = values;
+  const client = useApolloClient();
+  // console.log('values = ', values, '\n' )
 
+  // console.log("props = ", props, "\n");
+
+  if (values.isSubmitting) {
+    return (
+      <div
+        style={{
+          marginTop: "8vw",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          height: "20vw",
+          width: "50vw"
+        }}
+      >
+        <SpinnerContainer>
+          <h2>Working on it...</h2>
+          <PacmanLoader size={50} color="yellow"/>
+        </SpinnerContainer>
+      </div>
+    );
+  }
   console.log('values = ', values, '\n' )
 
   return (
@@ -73,13 +106,18 @@ function Login(props) {
         variant="filled"
       />
       <Button
+        disabled={values.isSubmitting}
         variant="outlined"
         color="primary"
-        onClick={() => addDeckMutation()}
+        onClick={() => {
+          setValues({ ...values, isSubmitting: true });
+          addDeckMutation();
+        }}
       >
         AddDeck
       </Button>
-      {/* didLoginFail && <h2>incorrect email or password</h2> */}
+      {values.successAdd ? <h3>Great work! Go on, add another!</h3> : null}
+      {values.errorAdd ? <h3>Oops, something went wrong</h3> : null }
     </div>
   );
 }

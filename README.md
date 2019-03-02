@@ -17,6 +17,9 @@
 ## 3rd Party Lib Reference
  - react-lazyload-fadin:
   - docs: https://github.com/Swizec/react-lazyload-fadein
+ - react-spinners:
+  - demos: https://www.react-spinners.com/
+  - docs: https://github.com/davidhu2000/react-spinners
 
 
 

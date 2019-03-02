@@ -6,13 +6,13 @@ export default gql`
     $name: String!,
     $email: String!,
     $password: String!
-    $isSeller: Boolean!
+    $isAdmin: Boolean!
   ) {
     userSignup(
       name: $name,
       email: $email,
       password: $password,
-      isSeller: $isSeller
+      isAdmin: $isAdmin
     ) {
         token
         user {

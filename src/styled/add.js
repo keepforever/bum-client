@@ -6,3 +6,7 @@ export const Container = styled.div`
   align-items: center
   justify-content: flex-start;
 `;
+
+export const SpinnerContainer = styled.div`
+  color: blue;
+`;
