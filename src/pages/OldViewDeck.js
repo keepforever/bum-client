@@ -65,15 +65,3 @@ export default props => {
     </div>
   );
 };
-// import { useApolloClient } from "react-apollo-hooks";
-// import ALL_DECKS_QUERY from "../graphql/q/ALL_DECKS_QUERY";
-
-// one way to get deck from params
-// const client = useApolloClient();
-// const { id } = props.match.params;
-// const { allDecks } = client.readQuery({
-//   query: ALL_DECKS_QUERY
-// });
-// const deckObj = allDecks.filter(d => {
-//   return d.id === id;
-// })[0]
