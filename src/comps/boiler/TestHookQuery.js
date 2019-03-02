@@ -1,6 +1,6 @@
 import React from 'react';
 import { useQuery } from "react-apollo-hooks";
-import ME_QUERY from '../graphql/q/ME_QUERY';
+import ME_QUERY from '../../graphql/q/ME_QUERY';
 
 
 export default  ( props ) => {

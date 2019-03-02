@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useMutation } from "react-apollo-hooks";
-import LOGIN_MUTATION from '../graphql/m/LOGIN_MUTATION';
+import LOGIN_MUTATION from '../../graphql/m/LOGIN_MUTATION';
 
 
 export default  ( props ) => {

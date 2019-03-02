@@ -1,6 +1,4 @@
 import React from "react";
-import FadeIn from "react-lazyload-fadein";
-
 import PropTypes from "prop-types";
 // material ui
 import Typography from "@material-ui/core/Typography";
