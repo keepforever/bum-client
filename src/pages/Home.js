@@ -71,7 +71,7 @@ class Home extends Component {
             </div>
           </RowContainer>
         </div>
-        <Button
+        {/* <Button
           color="black"
           onClick={() => {
             setAuthFalseAction();
@@ -79,7 +79,7 @@ class Home extends Component {
           }}
         >
           Log out
-        </Button>
+        </Button> */}
       </Container>
     );
   }

@@ -54,15 +54,15 @@ function ButtonAppBar(props) {
     <div className={classes.root}>
       <AppBar className={classes.myAppBar} position="static">
         <Toolbar>
-          <IconButton
+          {/* <IconButton
             className={classes.menuButton}
             color="inherit"
             aria-label="Menu"
           >
             <MenuIcon />
-          </IconButton>
+          </IconButton> */}
           <Typography variant="h6" color="inherit" className={classes.grow}>
-            Bumcheeks
+            Decktopia
           </Typography>
           {isLoggedIn ? logOutLink : logInLink}
           <Button color="inherit" component={Link} to="/home">

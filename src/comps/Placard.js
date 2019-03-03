@@ -27,10 +27,10 @@ function Placard(props) {
     <div>
       <Paper className={classes.paper} elevation={1}>
         <Typography className={classes.typoOne} variant="h4" component="h3">
-          {name}
+          Welcome, {name}
         </Typography>
         <Typography className={classes.typoTwo} variant="h5" component="h3">
-          decks: {decks.length}
+          # decks contributed: {decks.length}
         </Typography>
       </Paper>
     </div>
