@@ -16,6 +16,9 @@ const styles = {
   root: {
     flexGrow: 1
   },
+  myAppBar: {
+    background: '#282828'
+  },
   grow: {
     flexGrow: 1
   },
@@ -49,7 +52,7 @@ function ButtonAppBar(props) {
 
   return (
     <div className={classes.root}>
-      <AppBar position="static">
+      <AppBar className={classes.myAppBar} position="static">
         <Toolbar>
           <IconButton
             className={classes.menuButton}

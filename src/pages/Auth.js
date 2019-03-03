@@ -23,12 +23,11 @@ export default props => {
       <br/>
       <Button
         variant="outlined"
-        color="secondary"
         onClick={() => {
           setValues({ ...values, isLogin: !isLogin })}
         }
       >
-        {isLogin ? "Create An Account" : "Go to Login"}
+        {isLogin ? "Create An Account" : "Login"}
       </Button>
     </div>
   );

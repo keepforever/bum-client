@@ -3,10 +3,15 @@ import { useMutation } from "react-apollo-hooks";
 import REGISTER_MUTATION from "../graphql/m/REGISTER_MUTATION";
 import TextField from "@material-ui/core/TextField";
 import Button from '@material-ui/core/Button';
+// redux
+import { bindActionCreators } from "redux";
+import { connect } from "react-redux";
+import { setAuthTrue } from "../store/actions/auth";
 
-export default props => {
+function Signup(props) {
 
   // console.log("Signup.js, props = ", props, "\n");
+  const { setAuthTrueAction } = props;
 
   const setToken = token => {
     sessionStorage.setItem("bumtoken", token);
@@ -30,19 +35,22 @@ export default props => {
       ...values
     },
     update: async (proxy, result) => {
-      console.log("result = ", result, "\n");
 
-      // const loginToken = await result.data.login.payload.token;
-      // if (loginToken) {
-      //   setToken(loginToken);
-      // }
-      // console.log('loginToken = ', loginToken, '\n' )
-      // // nav home after successful login
-      // if(loginToken){
-      //   props.history.push("/home");
-      // } else {
-      //   console.log('bad Login', '\n' )
-      // }
+      const isSuccess = !!result.data.userSignup.token;
+      // console.log('isSuccess = ', isSuccess, '\n' )
+
+      if (isSuccess) {
+        console.log("hello successful userSignup = ", result, "\n");
+        props.history.push("/home");
+        setToken(result.data.userSignup.token);
+        setAuthTrueAction();
+      } else {
+        setValues({
+          ...values,
+          didLoginFail: true
+        });
+      }
+
     }
   });
 
@@ -69,6 +77,7 @@ export default props => {
         margin="normal"
         variant="filled"
       />
+      <br/>
       <Button
         variant="outlined"
         onClick={() => loginMutation()}
@@ -78,3 +87,17 @@ export default props => {
     </div>
   );
 };
+
+const mapDispatchToProps = dispatch => {
+  return bindActionCreators(
+    {
+      setAuthTrueAction: setAuthTrue
+    },
+    dispatch
+  );
+};
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(Signup);
