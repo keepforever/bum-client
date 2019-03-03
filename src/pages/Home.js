@@ -18,6 +18,9 @@ import {
 import MeDecksNew from "../comps/MeDecksNew";
 import CommunityDecks from "../comps/CommunityDecks";
 import Placard from "../comps/Placard";
+// material ui
+import Typography from "@material-ui/core/Typography";
+import Divider from "@material-ui/core/Divider";
 
 class Home extends Component {
   render() {
@@ -28,11 +31,9 @@ class Home extends Component {
     } = this.props;
 
     // console.log("Home.js, loading = ", loading, "\n");
-
     if (loading) return <h1>Loading...</h1>;
 
     // console.log('this.props.meQuery.me = ', this.props.meQuery.me, '\n' )
-
     if (!this.props.meQuery.me) {
       return <Redirect to="/auth" />;
     }
@@ -48,18 +49,33 @@ class Home extends Component {
         <div style={{ marginLeft: "50px" }}>
           <Placard {...me} />
           <RowContainer>
-            <DeckListContainer>
-              <CommunityDecks />
-            </DeckListContainer>
-            <DeckListContainer>
-              <MeDecksNew decks={me.decks} name={me.name}/>
-            </DeckListContainer>
+            <div style={{ display: "flex", flexDirection: "column" }}>
+              <Typography variant="h5" component="h3">
+                Community Decks
+              </Typography>
+              <Divider />
+              <br/>
+              <DeckListContainer>
+                <CommunityDecks />
+              </DeckListContainer>
+            </div>
+            <div style={{ display: "flex", flexDirection: "column" }}>
+              <Typography variant="h5" component="h3">
+                Your Decks
+              </Typography>
+              <Divider />
+              <br/>
+              <DeckListContainer>
+                <MeDecksNew decks={me.decks} name={me.name} />
+              </DeckListContainer>
+            </div>
           </RowContainer>
         </div>
         <Button
           color="black"
           onClick={() => {
             setAuthFalseAction();
+            this.props.history.push("./auth")
           }}
         >
           Log out

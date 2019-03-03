@@ -1,14 +1,12 @@
 import React from "react";
-import { graphql, compose } from "react-apollo";
-import ALL_DECKS_QUERY from "../graphql/q/ALL_DECKS_QUERY";
+import { compose } from "react-apollo";
 // material-ui
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
-import Typography from '@material-ui/core/Typography';
-// import Typography from '@material-ui/core/Typography';
 import FolderIcon from "@material-ui/icons/Folder";
+import Divider from "@material-ui/core/Divider";
 // utils
 import utils from "../utils";
 // router
@@ -29,32 +27,30 @@ function MeDecks(props) {
     });
   };
 
-
   return (
-    <div style={{border: "1px solid red"}}>
-    <Typography variant="h5" component="h3">
-      Your Decks
-    </Typography>
+    <div>
       <List dense={false}>
         {decks.map(d => {
-          console.log('MeDecksNew.js, d = ', d, '\n' )
+          console.log("MeDecksNew.js, d = ", d, "\n");
           const { deckName, deckDetails, score, id } = d;
           return (
-            <ListItem
-              key={id}
-              onClick={() => {
-                viewDeck(id, d);
-              }}
-            >
-              <ListItemIcon>
-                <FolderIcon />
-              </ListItemIcon>
-              <ListItemText
-                primary={deckName}
-                secondary={truncate(deckDetails)}
-              />
-              <ListItemText primary="Score" secondary={score} />
-            </ListItem>
+            <div key={id}>
+              <ListItem
+                onClick={() => {
+                  viewDeck(id, d);
+                }}
+              >
+                <ListItemIcon>
+                  <FolderIcon />
+                </ListItemIcon>
+                <ListItemText
+                  primary={deckName}
+                  secondary={truncate(deckDetails)}
+                />
+                <ListItemText primary="Score" secondary={score} />
+              </ListItem>
+              <Divider />
+            </div>
           );
         })}
       </List>
@@ -62,6 +58,4 @@ function MeDecks(props) {
   );
 }
 
-export default compose(
-  withRouter,
-)(MeDecks);
+export default compose(withRouter)(MeDecks);

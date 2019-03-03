@@ -11,7 +11,6 @@ import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 
 function Login(props) {
-
   // setTimeout(() => {
   //   console.log('auto Login = ', '\n' )
   //   loginMutation();
@@ -47,9 +46,10 @@ function Login(props) {
       // console.log('isSuccess = ', isSuccess, '\n' )
 
       if (isSuccess) {
+        console.log("hello successful login = ", result, "\n");
+        props.history.push("/home");
         setToken(result.data.login.payload.token);
         setAuthTrueAction();
-        props.history.push("/home");
       } else {
         setValues({
           ...values,
@@ -75,10 +75,7 @@ function Login(props) {
         margin="normal"
         variant="filled"
       />
-      <Button
-        variant="outlined"
-        onClick={() => loginMutation()}
-      >
+      <Button variant="outlined" onClick={() => loginMutation()}>
         LOGIN
       </Button>
       {didLoginFail && <h2>incorrect email or password</h2>}

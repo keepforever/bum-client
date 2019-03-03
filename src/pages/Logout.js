@@ -13,7 +13,7 @@ function Logout(props) {
   sessionStorage.setItem("bumtoken", "youAreLoggedOutNow")
   props.setAuthFalseAction();
   client.clearStore();
-  props.history.push("/add");
+  props.history.push("/auth");
 
   return <h1>Logging Out</h1>;
 }

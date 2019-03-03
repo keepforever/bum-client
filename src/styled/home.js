@@ -39,6 +39,8 @@ export const Button = styled.div`
 `;
 
 export const DeckListContainer = styled.div`
+  margin-right: 15px;
+  border: 1px solid black;
   width: 500px;
   height: 400px;
   overflow-y: auto;
