@@ -9,6 +9,7 @@ const styles = theme => ({
   root: {
     marginTop: 20,
     minWidth: "85vw",
+    maxWidth: "86vw",
     minHeight: "75vh",
     padding: "40px"
   },
