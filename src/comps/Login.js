@@ -12,10 +12,10 @@ import Button from "@material-ui/core/Button";
 
 function Login(props) {
 
-  setTimeout(() => {
-    console.log('auto Login = ', '\n' )
-    loginMutation();
-  }, 1000);
+  // setTimeout(() => {
+  //   console.log('auto Login = ', '\n' )
+  //   loginMutation();
+  // }, 1000);
 
   // console.log("Login.js, props = ", props, "\n");
   const { setAuthTrueAction } = props;
@@ -77,7 +77,6 @@ function Login(props) {
       />
       <Button
         variant="outlined"
-        color="primary"
         onClick={() => loginMutation()}
       >
         LOGIN

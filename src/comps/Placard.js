@@ -7,8 +7,8 @@ import Typography from '@material-ui/core/Typography';
 const styles = theme => ({
   root: {
     marginTop: "20px",
-    width: "100%",
-    padding: "40px"
+    minWidth: "500px",
+    marginBottom: "40px"
   },
   typo: {
     color: 'purple'
@@ -21,13 +21,10 @@ function Placard(props) {
   return (
     <div>
       <Paper className={classes.root} elevation={1}>
+        <Typography variant="h4" component="h3">
+          {name}
+        </Typography>
         <Typography variant="h5" component="h3">
-          hello: {name}
-        </Typography>
-        <Typography className={classes.typo} component="h3">
-          email:
-        </Typography>
-        <Typography component="p">
           decks: {decks.length}
         </Typography>
       </Paper>

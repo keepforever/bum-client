@@ -2,6 +2,9 @@ import styled from 'styled-components';
 
 export const Container = styled.div`
   /* background: lightyellow; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   width: 100%;
 `;
 
@@ -35,6 +38,11 @@ export const Button = styled.div`
   }
 `;
 
-export const CommunityDecksContainer = styled.div`
+export const DeckListContainer = styled.div`
   width: 500px;
+  height: 400px;
+  overflow-y: auto;
+  ::-webkit-scrollbar{
+    width: 0;
+  }
 `;

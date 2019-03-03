@@ -71,7 +71,6 @@ export default props => {
       />
       <Button
         variant="outlined"
-        color="primary"
         onClick={() => loginMutation()}
       >
         CREATE ACCOUNT

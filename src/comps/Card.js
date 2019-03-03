@@ -16,9 +16,13 @@ const styles = theme => ({
 });
 
 function Card(props) {
-  console.log("props = ", props, "\n");
+  // console.log("Card.js, props = ", props, "\n");
 
-  const { imageUrl, name, quantity, classes, rarity, text, type } = props;
+  const { imageUrl, name, quantity, classes, rarity, text, type, isSplitCard } = props;
+
+  if(isSplitCard) {
+    console.log('Card.js, hello isSplitCard = ', props, '\n' )
+  }
 
   return (
     <div style={{ marginRight: "15px" }} key={name}>

@@ -8,11 +8,16 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { setAuthFalse } from "../store/actions/auth";
 // styled
-import { Container, RowContainer, Button, CommunityDecksContainer } from "../styled/home";
+import {
+  Container,
+  RowContainer,
+  Button,
+  DeckListContainer
+} from "../styled/home";
 // comps
-import MeDeckList from "../comps/MeDeckList";
+import MeDecksNew from "../comps/MeDecksNew";
 import CommunityDecks from "../comps/CommunityDecks";
-import Placard from "../comps/Placard"
+import Placard from "../comps/Placard";
 
 class Home extends Component {
   render() {
@@ -33,26 +38,23 @@ class Home extends Component {
     }
 
     const {
-      meQuery: {
-        me
-      }
+      meQuery: { me }
     } = this.props;
 
     console.log("Home.js, \n this.props = ", this.props, "\n");
+
     return (
       <Container>
         <div style={{ marginLeft: "50px" }}>
+          <Placard {...me} />
           <RowContainer>
-            <Placard {...me}/>
-            {/* <h3>name: {name}</h3>
-            <h3>email: {email}</h3>
-            <h3>number of decks: {decks.length}</h3> */}
+            <DeckListContainer>
+              <CommunityDecks />
+            </DeckListContainer>
+            <DeckListContainer>
+              <MeDecksNew decks={me.decks} name={me.name}/>
+            </DeckListContainer>
           </RowContainer>
-
-          <CommunityDecksContainer>
-            <CommunityDecks />
-          </CommunityDecksContainer>
-          {/*<MeDeckList decks={decks}/> */}
         </div>
         <Button
           color="black"
@@ -82,7 +84,7 @@ export default connect(
 )(
   compose(
     graphql(ME_QUERY, {
-      name: "meQuery",
+      name: "meQuery"
       // options: {
       //   pollInterval: "5000"
       // }

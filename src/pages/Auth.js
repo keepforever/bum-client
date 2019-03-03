@@ -16,7 +16,7 @@ export default props => {
   const { isLogin } = values;
 
   return (
-    <div style={{ width: 500, display: "flex", flexDirection: "column" }}>
+    <div style={{ width: '500px', display: "flex", flexDirection: "column" }}>
       { isLogin && <Login {...props}/>}
       { !isLogin && <Signup {...props}/>}
       <br/>

@@ -47,7 +47,17 @@ function ViewDeck(props) {
 
       <Row>
         {cardNames.map(c => {
-          return <Card key={deckList[c].name} {...deckList[c]} />;
+          if(deckList[c].isSplitCard) {
+            const firstHalf = Object.keys(deckList[c])[2];
+            console.log('firstHalf = ', firstHalf, '\n' )
+            return <Card
+                      key={deckList[c][firstHalf].name}
+                      {...deckList[c][firstHalf]}
+                      quantity={deckList[c].quantity}
+                    />;
+          } else {
+            return <Card key={deckList[c].name} {...deckList[c]} />;
+          }
         })}
       </Row>
     </div>
