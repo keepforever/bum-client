@@ -9,6 +9,8 @@ import LOGIN_MUTATION from "../graphql/m/LOGIN_MUTATION";
 // material ui
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
+// spinner
+import { PacmanLoader } from "react-spinners";
 
 function Login(props) {
   // setTimeout(() => {
@@ -26,10 +28,11 @@ function Login(props) {
   const [values, setValues] = useState({
     email: "",
     password: "",
-    didLoginFail: false
+    didLoginFail: false,
+    isSubmitting: false
   });
 
-  const { email, password, didLoginFail } = values;
+  const { email, password, didLoginFail, isSubmitting } = values;
 
   const handleChange = name => event => {
     setValues({ ...values, [name]: event.target.value });
@@ -47,17 +50,26 @@ function Login(props) {
 
       if (isSuccess) {
         console.log("hello successful login = ", result, "\n");
+        setValues({
+          ...values,
+          isSubmitting: false
+        })
         props.history.push("/home");
         setToken(result.data.login.payload.token);
         setAuthTrueAction();
       } else {
         setValues({
           ...values,
-          didLoginFail: true
+          didLoginFail: true,
+          isSubmitting: false
         });
       }
     }
   });
+
+  if(isSubmitting){
+    return <PacmanLoader size={50} color="yellow"/>
+  }
 
   return (
     <div style={{ width: 500, display: "flex", flexDirection: "column" }}>
@@ -79,7 +91,7 @@ function Login(props) {
       <Button variant="outlined" onClick={() => loginMutation()}>
         LOGIN
       </Button>
-      {didLoginFail && <h2>incorrect email or password</h2>}
+      {didLoginFail && <h2 style={{color: 'cornsilk'}}>incorrect email or password</h2>}
     </div>
   );
 }

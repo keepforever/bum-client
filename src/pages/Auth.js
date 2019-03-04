@@ -17,6 +17,7 @@ export default props => {
 
   return (
     <div style={{ width: '500px', display: "flex", flexDirection: "column" }}>
+      <h4 style={{color: 'cornsilk'}}>Note, I am hosting my GraphQL server on zeit.co/now's free tier and I've noticed this behavior that, when you haven't made a request in awhile(i.e. over night), the server 'goes to sleep', so, when you try to login in will respond with a 404 after a delay.  But, once the server gets a couple requests it 'wakes up' and is responsive.  If your login or create account action fails, just refresh the page and try again.</h4>
       { isLogin && <Login {...props}/>}
       { !isLogin && <Signup {...props}/>}
       <br/>
