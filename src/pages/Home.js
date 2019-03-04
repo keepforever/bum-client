@@ -100,10 +100,10 @@ export default connect(
 )(
   compose(
     graphql(ME_QUERY, {
-      name: "meQuery"
-      // options: {
-      //   pollInterval: "5000"
-      // }
+      name: "meQuery",
+      options: {
+        pollInterval: 5000
+      }
     })
   )(Home)
 );
