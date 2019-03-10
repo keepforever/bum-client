@@ -58,6 +58,7 @@ function ViewDeck(props) {
   const { classes } = props;
 
   const parsedDecklist = JSON.parse(deckList);
+  console.log('parsedDecklist = ', parsedDecklist, '\n' )
 
   const cardNames = Object.keys(parsedDecklist);
 
