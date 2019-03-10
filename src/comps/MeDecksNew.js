@@ -13,17 +13,13 @@ import utils from "../utils";
 import { withRouter } from "react-router";
 
 function MeDecks(props) {
-  console.log("MeDecks.js, props = ", props, "\n");
+  // console.log("MeDecks.js, props = ", props, "\n");
   const { decks = [], name } = props;
   const { truncate } = utils;
 
-  const viewDeck = (id, deck) => {
+  const viewDeck = (id) => {
     props.history.push(`/view-deck/${id}`, {
-      ...deck,
-      author: {
-        name
-      },
-      deckList: JSON.parse(deck.deckList)
+      id
     });
   };
 
@@ -31,13 +27,13 @@ function MeDecks(props) {
     <div>
       <List dense={false}>
         {decks.map(d => {
-          console.log("MeDecksNew.js, d = ", d, "\n");
+          // console.log("MeDecksNew.js, d = ", d, "\n");
           const { deckName, deckDetails, score, id } = d;
           return (
             <div key={id}>
               <ListItem
                 onClick={() => {
-                  viewDeck(id, d);
+                  viewDeck(id);
                 }}
               >
                 <ListItemIcon>

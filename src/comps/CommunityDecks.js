@@ -16,10 +16,9 @@ import { withRouter } from "react-router";
 function CommunityDecks(props) {
   console.log("CommunityDecks, props = ", props, "\n");
 
-  const viewDeck = (id, deck) => {
+  const viewDeck = (id) => {
     props.history.push(`/view-deck/${id}`, {
-      ...deck,
-      deckList: JSON.parse(deck.deckList)
+      id
     });
   };
 
@@ -49,7 +48,7 @@ function CommunityDecks(props) {
             <div key={id}>
               <ListItem
                 onClick={() => {
-                  viewDeck(id, d);
+                  viewDeck(id);
                 }}
               >
                 <ListItemIcon>

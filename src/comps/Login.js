@@ -24,8 +24,8 @@ function Login(props) {
   };
 
   const [values, setValues] = useState({
-    email: "b",
-    password: "b",
+    email: "candy",
+    password: "candy",
     didLoginFail: false
   });
 
