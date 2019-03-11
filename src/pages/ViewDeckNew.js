@@ -7,6 +7,7 @@ import SINGLE_DECK_QUERY from "../graphql/q/SINGLE_DECK_QUERY";
 import VOTE_ON_DECK_MUTATION from "../graphql/m/VOTE_ON_DECK_MUTATION";
 // material ui
 import { withStyles } from "@material-ui/core/styles";
+import Button from '@material-ui/core/Button';
 import Typography from "@material-ui/core/Typography";
 import IconButton from "@material-ui/core/IconButton";
 import ThumbDownSharp from "@material-ui/icons/ThumbDownSharp";
@@ -17,9 +18,15 @@ import Card from "../comps/Card";
 
 const styles = theme => ({
   typo: {
-    margin: "40px 0",
+    margin: "10px 10px",
     fontSize: 50,
     color: "red"
+  },
+  visitUserButton: {
+    margin: "40px 10px",
+    fontSize: 50,
+    color: "white",
+    background: 'black',
   },
   para: {
     fontSize: 30
@@ -31,6 +38,12 @@ const styles = theme => ({
 
 function ViewDeck(props) {
   console.log("ViewDeck.js, props` = ", props, "\n");
+
+  const viewUserProfile = (id) => {
+    props.history.push(`/view-user/${id}`, {
+      id
+    });
+  };
 
   const castVote = async (id, quality) => {
     const { voteOnDeckMutation } = props;
@@ -61,7 +74,7 @@ function ViewDeck(props) {
     deckList,
     score,
     id,
-    author: { name }
+    author: { name, id: deckAuthorId }
   } = props.singleDeckQuery.singleDeck;
 
   const { classes } = props;
@@ -72,10 +85,21 @@ function ViewDeck(props) {
 
   return (
     <div>
-      <Row style={{ justifyContent: "space-between" }}>
+      <Row style={{
+        justifyContent: "space-between",
+        alignItems: 'center'
+      }}>
         <Typography className={classes.typo}>
-          {`"${deckName}" by ${name}`}
+          {`"${deckName}"`}
         </Typography>
+        <Typography className={classes.typo}>
+          by
+        </Typography>
+        <Button color="secondary" onClick={() => {
+          viewUserProfile(deckAuthorId)
+        }} className={classes.visitUserButton}>
+          {name}
+        </Button>
         <Typography className={classes.typo}>{`Score: ${score}`}</Typography>
         <Row>
           <IconButton
