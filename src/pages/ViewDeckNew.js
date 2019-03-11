@@ -4,6 +4,7 @@ import { graphql, compose } from "react-apollo";
 import { connect } from "react-redux";
 // graphql
 import SINGLE_DECK_QUERY from "../graphql/q/SINGLE_DECK_QUERY";
+import VOTE_ON_DECK_MUTATION from "../graphql/m/VOTE_ON_DECK_MUTATION";
 // material ui
 import { withStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
@@ -31,19 +32,42 @@ const styles = theme => ({
 function ViewDeck(props) {
   console.log("ViewDeck.js, props` = ", props, "\n");
 
-  // const {
-  //   deckName,
-  //   deckDetails,
-  //   deckList,
-  //   score,
-  //   id,
-  //   author: { name }
-  // } = props.location.state;
+  const upVoteDeck = async id => {
+    let response;
+    try {
+      response = await props.voteOnDeckMutation({
+        variables: {
+          deckId: id,
+          quality: true
+        }
+      });
+    } catch (e) {
+      console.log("Dislike catch block = ", e, "\n");
+    }
 
-  const { loading } =  props.singleDeckQuery;
+    console.log("upVoteDeck response = ", response, "\n");
+  };
 
-  if(loading) {
-    return <h1>LOADING... </h1>
+  const downVoteDeck = async id => {
+    let response;
+    try {
+      response = await props.voteOnDeckMutation({
+        variables: {
+          deckId: id,
+          quality: false
+        }
+      });
+    } catch (e) {
+      console.log("Dislike catch block = ", e, "\n");
+    }
+
+    console.log("downVoteDeck response = ", response, "\n");
+  };
+
+  const { loading } = props.singleDeckQuery;
+
+  if (loading) {
+    return <h1>LOADING... </h1>;
   }
 
   const {
@@ -55,10 +79,9 @@ function ViewDeck(props) {
     author: { name }
   } = props.singleDeckQuery.singleDeck;
 
-  const { classes } = props;
+  const { classes, voteOnDeckMutation } = props;
 
   const parsedDecklist = JSON.parse(deckList);
-  console.log('parsedDecklist = ', parsedDecklist, '\n' )
 
   const cardNames = Object.keys(parsedDecklist);
 
@@ -76,9 +99,9 @@ function ViewDeck(props) {
       <br />
       <Row>
         <IconButton
-          aria-label="Delete"
+          aria-label="Down Vote Deck"
           onClick={() => {
-            console.log("DisLike = ", id, "\n");
+            downVoteDeck(id);
           }}
         >
           <ThumbDownSharp style={{ fontSize: 50 }} />
@@ -86,7 +109,7 @@ function ViewDeck(props) {
         <IconButton
           aria-label="Delete"
           onClick={() => {
-            console.log("like = ", id, "\n");
+            upVoteDeck(id);
           }}
         >
           <ThumbUpSharp style={{ fontSize: 50 }} />
@@ -138,5 +161,8 @@ export default compose(
         }
       };
     }
+  }),
+  graphql(VOTE_ON_DECK_MUTATION, {
+    name: "voteOnDeckMutation"
   })
 )(ViewDeck);
