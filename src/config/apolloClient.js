@@ -35,7 +35,7 @@ const authLink = setContext((_, { headers }) => {
   return context;
 });
 
-const httpLink = new HttpLink({ uri: process.env.REACT_APP_GRAPHQL_SERVER });
+const httpLink = new HttpLink({ uri: "https://prisma-feb-2019-azzfdmsxgy.now.sh" });
 
 const client = new ApolloClient({
   link: ApolloLink.from([errorLink, authLink, httpLink]),
