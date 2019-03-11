@@ -46,7 +46,7 @@ function ViewDeck(props) {
       console.log("Dislike catch block = ", e, "\n");
     }
 
-    console.log("castVote response = ", response, "\n");
+    // console.log("castVote response = ", response, "\n");
   };
 
   const { loading } = props.singleDeckQuery;
@@ -72,34 +72,36 @@ function ViewDeck(props) {
 
   return (
     <div>
-      <Typography className={classes.typo}>
-        {`"${deckName}" by ${name}`}
-      </Typography>
-      <Typography className={classes.typo}>{`Score: ${score}`}</Typography>
+      <Row style={{ justifyContent: "space-between" }}>
+        <Typography className={classes.typo}>
+          {`"${deckName}" by ${name}`}
+        </Typography>
+        <Typography className={classes.typo}>{`Score: ${score}`}</Typography>
+        <Row>
+          <IconButton
+            aria-label="Down Vote Deck"
+            onClick={() => {
+              castVote(id, false);
+            }}
+          >
+            <ThumbDownSharp style={{ fontSize: 50 }} />
+          </IconButton>
+          <IconButton
+            aria-label="Delete"
+            onClick={() => {
+              castVote(id, true);
+            }}
+          >
+            <ThumbUpSharp style={{ fontSize: 50 }} />
+          </IconButton>
+        </Row>
+      </Row>
       <div
         style={{ border: "2px solid white", padding: 15, margin: "40px 0px" }}
       >
         <Typography className={classes.para}>{`${deckDetails}`}</Typography>
       </div>
       <br />
-      <Row>
-        <IconButton
-          aria-label="Down Vote Deck"
-          onClick={() => {
-            castVote(id, false);
-          }}
-        >
-          <ThumbDownSharp style={{ fontSize: 50 }} />
-        </IconButton>
-        <IconButton
-          aria-label="Delete"
-          onClick={() => {
-            castVote(id, true);
-          }}
-        >
-          <ThumbUpSharp style={{ fontSize: 50 }} />
-        </IconButton>
-      </Row>
 
       <Row>
         {cardNames.map(c => {
