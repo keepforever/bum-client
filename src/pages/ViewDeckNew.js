@@ -33,9 +33,10 @@ function ViewDeck(props) {
   console.log("ViewDeck.js, props` = ", props, "\n");
 
   const castVote = async (id, quality) => {
+    const { voteOnDeckMutation } = props;
     let response;
     try {
-      response = await props.voteOnDeckMutation({
+      response = await voteOnDeckMutation({
         variables: {
           deckId: id,
           quality
@@ -63,7 +64,7 @@ function ViewDeck(props) {
     author: { name }
   } = props.singleDeckQuery.singleDeck;
 
-  const { classes, voteOnDeckMutation } = props;
+  const { classes } = props;
 
   const parsedDecklist = JSON.parse(deckList);
 
