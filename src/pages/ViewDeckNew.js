@@ -32,36 +32,20 @@ const styles = theme => ({
 function ViewDeck(props) {
   console.log("ViewDeck.js, props` = ", props, "\n");
 
-  const upVoteDeck = async id => {
+  const castVote = async (id, quality) => {
     let response;
     try {
       response = await props.voteOnDeckMutation({
         variables: {
           deckId: id,
-          quality: true
+          quality
         }
       });
     } catch (e) {
       console.log("Dislike catch block = ", e, "\n");
     }
 
-    console.log("upVoteDeck response = ", response, "\n");
-  };
-
-  const downVoteDeck = async id => {
-    let response;
-    try {
-      response = await props.voteOnDeckMutation({
-        variables: {
-          deckId: id,
-          quality: false
-        }
-      });
-    } catch (e) {
-      console.log("Dislike catch block = ", e, "\n");
-    }
-
-    console.log("downVoteDeck response = ", response, "\n");
+    console.log("castVote response = ", response, "\n");
   };
 
   const { loading } = props.singleDeckQuery;
@@ -101,7 +85,7 @@ function ViewDeck(props) {
         <IconButton
           aria-label="Down Vote Deck"
           onClick={() => {
-            downVoteDeck(id);
+            castVote(id, false);
           }}
         >
           <ThumbDownSharp style={{ fontSize: 50 }} />
@@ -109,7 +93,7 @@ function ViewDeck(props) {
         <IconButton
           aria-label="Delete"
           onClick={() => {
-            upVoteDeck(id);
+            castVote(id, true);
           }}
         >
           <ThumbUpSharp style={{ fontSize: 50 }} />
