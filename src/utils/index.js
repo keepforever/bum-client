@@ -2,17 +2,14 @@ function rarityBorderColor(str) {
   switch (str) {
     case "mythic":
       return "orange";
-      break;
     case "rare":
       return "yellow";
-      break;
     case "uncommon":
       return "blue";
-      break;
     case "common":
       return "white";
-      break;
     default:
+      return "white";  
   }
 }
 
