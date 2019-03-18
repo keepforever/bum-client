@@ -7,5 +7,6 @@ export default gql`
     deckDetails
     deckList
     score
+    raw
   }
 `;

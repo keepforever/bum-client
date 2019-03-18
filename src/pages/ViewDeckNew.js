@@ -7,7 +7,7 @@ import SINGLE_DECK_QUERY from "../graphql/q/SINGLE_DECK_QUERY";
 import VOTE_ON_DECK_MUTATION from "../graphql/m/VOTE_ON_DECK_MUTATION";
 // material ui
 import { withStyles } from "@material-ui/core/styles";
-import Button from '@material-ui/core/Button';
+import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import IconButton from "@material-ui/core/IconButton";
 import ThumbDownSharp from "@material-ui/icons/ThumbDownSharp";
@@ -15,6 +15,8 @@ import ThumbUpSharp from "@material-ui/icons/ThumbUpSharp";
 // locals
 import { Row } from "../styled/viewDeck";
 import Card from "../comps/Card";
+// copy to clipboard util
+import { CopyToClipboard } from "react-copy-to-clipboard";
 
 const styles = theme => ({
   typo: {
@@ -26,7 +28,7 @@ const styles = theme => ({
     margin: "40px 10px",
     fontSize: 50,
     color: "white",
-    background: 'black',
+    background: "black"
   },
   para: {
     fontSize: 30
@@ -39,7 +41,7 @@ const styles = theme => ({
 function ViewDeck(props) {
   console.log("ViewDeck.js, props` = ", props, "\n");
 
-  const viewUserProfile = (id) => {
+  const viewUserProfile = id => {
     props.history.push(`/view-user/${id}`, {
       id
     });
@@ -74,6 +76,7 @@ function ViewDeck(props) {
     deckList,
     score,
     id,
+    raw,
     author: { name, id: deckAuthorId }
   } = props.singleDeckQuery.singleDeck;
 
@@ -85,19 +88,21 @@ function ViewDeck(props) {
 
   return (
     <div>
-      <Row style={{
-        justifyContent: "space-between",
-        alignItems: 'center'
-      }}>
-        <Typography className={classes.typo}>
-          {`"${deckName}"`}
-        </Typography>
-        <Typography className={classes.typo}>
-          by
-        </Typography>
-        <Button color="secondary" onClick={() => {
-          viewUserProfile(deckAuthorId)
-        }} className={classes.visitUserButton}>
+      <Row
+        style={{
+          justifyContent: "space-between",
+          alignItems: "center"
+        }}
+      >
+        <Typography className={classes.typo}>{`"${deckName}"`}</Typography>
+        <Typography className={classes.typo}>by</Typography>
+        <Button
+          color="secondary"
+          onClick={() => {
+            viewUserProfile(deckAuthorId);
+          }}
+          className={classes.visitUserButton}
+        >
           {name}
         </Button>
         <Typography className={classes.typo}>{`Score: ${score}`}</Typography>
@@ -125,8 +130,16 @@ function ViewDeck(props) {
       >
         <Typography className={classes.para}>{`${deckDetails}`}</Typography>
       </div>
+      {raw && (
+        <CopyToClipboard
+          onCopy={() => alert(`Copied ${deckName}!`)} text={raw}
+        >
+          <Button color="secondary" variant="contained">
+            Copy to Arena
+          </Button>
+        </CopyToClipboard>
+      )}
       <br />
-
       <Row>
         {cardNames.map(c => {
           if (parsedDecklist[c].isSplitCard) {
