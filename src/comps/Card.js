@@ -4,6 +4,10 @@ import PropTypes from "prop-types";
 // material ui
 import Typography from "@material-ui/core/Typography";
 import { withStyles } from "@material-ui/core/styles";
+// styled-comps
+import { MyCard } from '../styled/card';
+// utils
+import utils from '../utils'
 
 const styles = theme => ({
   typo: {
@@ -16,20 +20,23 @@ const styles = theme => ({
 });
 
 function Card(props) {
+  const { isBasicLand } = utils;
   // console.log("Card.js, props = ", props, "\n");
 
-  const { imageUrl, name, quantity, classes, rarity, text, type, isSplitCard } = props;
+  const { imageUrl, name, quantity, classes } = props;
 
-  if(isSplitCard) {
-    console.log('Card.js, hello isSplitCard = ', props, '\n' )
-  }
+  // if(isSplitCard) {
+  //   console.log('Card.js, hello isSplitCard = ', props, '\n' )
+  // }
+
+  const showImage = imageUrl || isBasicLand(name)
 
   return (
     <div style={{ marginRight: "15px" }} key={name}>
       <Typography className={classes.typo}>
         {`"${name}" x ${quantity}`}
       </Typography>
-      <FadeIn height={600}>
+      {showImage ? <FadeIn height={600}>
         {onload => (
           <img
             alt="nope"
@@ -41,7 +48,7 @@ function Card(props) {
             }}
           />
         )}
-      </FadeIn>
+      </FadeIn> : <MyCard {...props} />}
     </div>
   );
 }
