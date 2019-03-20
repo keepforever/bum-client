@@ -1,17 +1,16 @@
 import React, { useState } from "react";
 import { Col } from "../styled/shared";
 import TextField from "@material-ui/core/TextField";
+// custom hook?
+import { useChangeText } from "../hooks";
 
 function AboutTest(props) {
   const [values, setValues] = useState({
-    text: "test"
+    text: "test",
+    hookText: "hookText"
   });
 
-  const { test } = values;
-
-  const handleChange = name => event => {
-    setValues({ ...values, [name]: event.target.value });
-  };
+  const { test, hookText } = values;
 
   return (
     <div>
@@ -23,6 +22,7 @@ function AboutTest(props) {
             margin: "10px 0px"
           }}
           target="_blank"
+          rel="noopener noreferrer"
           href={`https://www.google.com/search?&q=${test}`}
         >
           click me
@@ -30,7 +30,14 @@ function AboutTest(props) {
         <TextField
           label="Test"
           value={test}
-          onChange={handleChange("test")}
+          onChange={e => useChangeText("test", e.target.value, setValues, values)}
+          margin="normal"
+          variant="filled"
+        />
+        <TextField
+          label="Hook"
+          value={hookText}
+          onChange={e => useChangeText("hookText", e.target.value, setValues, values)}
           margin="normal"
           variant="filled"
         />
