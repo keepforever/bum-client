@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import AboutTest from '../comps/AboutTest'
 
 class About extends Component {
   render() {
@@ -8,7 +9,7 @@ class About extends Component {
           Hello About Page
           <a href={"/cat pictures"}>search</a>
         </h1>
-        <p>test</p>
+        <AboutTest />
       </div>
     );
   }
