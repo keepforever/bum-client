@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import AboutTest from '../comps/AboutTest'
+import PaginatedDecks from '../comps/PaginatedDecks'
 
 class About extends Component {
   render() {
@@ -9,6 +10,9 @@ class About extends Component {
           Hello About Page
         </h1>
         <AboutTest />
+        <br/>
+        <br/>
+        <PaginatedDecks />
       </div>
     );
   }
