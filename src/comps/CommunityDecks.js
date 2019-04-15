@@ -12,11 +12,13 @@ import FolderIcon from "@material-ui/icons/Folder";
 import utils from "../utils";
 // router
 import { withRouter } from "react-router";
+// styled comps
+import { DeckListItemContainer } from "../styled/communityDecks";
 
 function CommunityDecks(props) {
   console.log("CommunityDecks, props = ", props, "\n");
 
-  const viewDeck = (id) => {
+  const viewDeck = id => {
     props.history.push(`/view-deck/${id}`, {
       id
     });
@@ -45,7 +47,7 @@ function CommunityDecks(props) {
         {allDecks.map(d => {
           const { deckName, deckDetails, score, id } = d;
           return (
-            <div key={id}>
+            <DeckListItemContainer key={id} onMouseEnter={() => { console.log(`hello enter ${deckName}`, '\n' ) }}>
               <ListItem
                 onClick={() => {
                   viewDeck(id);
@@ -61,7 +63,7 @@ function CommunityDecks(props) {
                 <ListItemText primary="Score" secondary={score} />
               </ListItem>
               <Divider />
-            </div>
+            </DeckListItemContainer>
           );
         })}
       </List>
